@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Calculator Build 0.01а</title>
+	<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>!-->
+	<script src="libs/vue.js"></script>
+</head>
+<body>
+	<div class="preloader">
+		<div class="animated-square">
+			
+		</div>
+	</div>
+	<a class="back_to_top" title="Наверх">↑</a>
+	<section id="calculator" :class="{options: tabnumber == 3,parametrs : TrimHidden == true}">
+		<header class="header__panel">
+			<div class="container">
+				<div class="logo-place">
+					<a v-bind:href="link" class="home-link">
+						<img src="img/header_logo.png" alt="logotype" class="logotype">
+					</a>
+					
+				</div>
+				<nav class="tabs">
+					<ul class="tabs-list">
+						<li class="tab-item">
+							<a href="#" class="tab-link" :class="{active: tabnumber == 1}" v-on:click="tabnumber = 1">Параметры</a>
+						</li>
+						<li class="tab-item">
+							<a href="#" class="tab-link" :class="{active: tabnumber == 2}" v-on:click="tabnumber = 2">Редактор</a>
+						</li>
+						<li class="tab-item">
+							<a href="#" class="tab-link" :class="{active: tabnumber == 3}" v-on:click="tabnumber = 3">Опции</a>
+						</li>
+						<li class="tab-item">
+							<a href="#" class="tab-link" :class="{active: tabnumber == 4}" v-on:click="tabnumber = 4">Итог</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="phone-content">
+					<!--<h2 class="phone-info">
+					{{telinfo}}</h2>!-->
+					<h1 class="phone">{{phone}}</h1>
+				</div>
+			</div>
+		</header>
+		<section class="main__panels">
+			<div class="container">
+				<div class="basic-panel" v-if="tabnumber == 1">
+					<div class="first-panel">
+						<div class="square-info">
+							<span>Площадь</span>
+							<div class="square-value"><input placeholder="30" id="square" type="text" size="5" v-model="SquareCount"  maxlength="3">м<sup>2</sup></div>
+						</div>
+						<div class="room-info">
+							<span>Количество комнат</span>
+							<div class="room-variant">
+								<label for="#" :class="{activeTabItem : IsStudio}"v-on:click="IsStudio = true, roomcount = 0">Студия</label>
+								<label for="#" :class="{activeTabItem:roomcount ==1}" v-on:click="roomcount = 1, IsStudio = false">1</label>
+								<label for="#" :class="{activeTabItem:roomcount ==2}" v-on:click="roomcount = 2, IsStudio = false">2</label>
+								<label for="#" :class="{activeTabItem:roomcount ==3}" v-on:click="roomcount = 3, IsStudio = false">3</label>
+								<label for="#" :class="{activeTabItem:roomcount ==4}" v-on:click="roomcount = 4, IsStudio = false">4</label>
+								<label for="#" :class="{activeTabItem:roomcount ==5}" v-on:click="roomcount = 5, IsStudio = false">5</label>
+							</div>
+						</div>
+					</div>
+					<div class="second-panel">	
+						<div class="door-info">
+							<span>Количество дверей</span>
+							<div class="door-variant">
+								<label for="#" :class="{activeTabItem : doorcount == 1}" v-on:click="doorcount = 1">1</label>
+								<label for="#" :class="{activeTabItem : doorcount == 2}" v-on:click="doorcount = 2">2</label>
+								<label for="#" :class="{activeTabItem : doorcount == 3}" v-on:click="doorcount = 3">3</label>
+								<label for="#" :class="{activeTabItem : doorcount == 4}" v-on:click="doorcount = 4">4</label>
+								<label for="#" :class="{activeTabItem : doorcount == 5}" v-on:click="doorcount = 5">5</label>
+								<label for="#" :class="{activeTabItem : doorcount == 6}" v-on:click="doorcount = 6">6</label>
+								<label for="#" :class="{activeTabItem : doorcount == 7}" v-on:click="doorcount = 7">7</label>
+								<label for="#" :class="{activeTabItem : doorcount == 8}" v-on:click="doorcount = 8">8</label>
+							</div>
+						</div>
+						<div class="ceiling-info">
+							<span>Высота потолка</span>
+							<select name="ceiling-height" id="height" v-model="heightcount">
+								<option value="2.4">2,4 м</option>
+								<option value="2.5">2,5 м</option>
+								<option value="2.6">2,6 м</option>
+								<option value="2.7">2,7 м</option>
+								<option value="2.8">2,8 м</option>
+								<option value="2.9">2,9 м</option>
+								<option value="3">3,0 м</option>
+								<option value="3.1">3,1 м</option>
+								<option value="3.2">3,2 м</option>
+								<option value="3.3">3,3 м</option>
+								<option value="3.4">3,4 м</option>
+								<option value="3.5">3,5 м</option>
+								<option value="3.6">3,6 м</option>
+								<option value="3.7">3,7 м</option>
+								<option value="3.8">3,8 м</option>
+								<option value="3.9">3,9 м</option>
+								<option value="4">4,0 м</option>
+								<option value="4.5">4,5 м</option>
+							</select>
+						</div>
+					</div>
+					<div class="third-panel">
+						<div class="third-choice" v-on:click="TrimOpen">
+							<h1 class="choice-trim" v-on:click="IsOk = true">Выбор черновой отделки</h1>
+						</div>
+						<div class="third-subpanel" v-if="TrimHidden == false">
+							<div class="ceiling-type flex-grid">
+								<span>Тип потолка</span>
+								<div class="subpanel-block" :class="{active_subtabs : CeilingChoice == 1}" v-on:click="CeilingChoice = 1, CeilingCost = 35">
+									<label for="#" class="subpanel-block-title">Натяжной потолок ПВХ белый матовый 
+									</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : CeilingChoice == 2}" v-on:click="CeilingChoice = 2, CeilingCost = 70">
+									<label for="#" class="subpanel-block-title">Гипсокартонный потолок</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : CeilingChoice == 3}" v-on:click="CeilingChoice = 3, CeilingCost = 105">
+									<label for="#" class="subpanel-block-title" >Оштукатуренный потолок</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+							</div>
+							<div class="wall-aligment-type flex-grid">
+								<span>Выравнивание стен</span>
+								<div class="subpanel-block" :class="{active_subtabs : WallAligmentChoice == 1}" v-on:click="WallAligmentChoice = 1, WallAligmentCost = 200">
+									<label for="#" class="subpanel-block-title" >Оштукатуривание стен по маякам толщиной до 2 см 
+									</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : WallAligmentChoice == 2}" v-on:click="WallAligmentChoice = 2, WallAligmentCost = 300">
+									<label for="#" class="subpanel-block-title">Оштукатуривание стен по маякам толщиной до 3 см</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : WallAligmentChoice == 3}" v-on:click="WallAligmentChoice = 3, WallAligmentCost = 400">
+									<label for="#" class="subpanel-block-title">Оштукатуривание стен по маякам толщиной до 4 см</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : WallAligmentChoice == 4}" v-on:click="WallAligmentChoice = 4, WallAligmentCost = 500">
+									<label for="#" class="subpanel-block-title">Оштукатуривание стен по маякам толщиной до 5 см</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+							</div>
+							<div class="floor-screed-type flex-grid">
+								<span>Стяжка пола</span>
+								<div class="subpanel-block" :class="{active_subtabs : FloorScreedChoice == 1}" v-on:click="FloorScreedChoice = 1, FloorScreedCost = 350">
+									<label for="#" class="subpanel-block-title" >Базовая стяжка (до 60мм)
+									</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : FloorScreedChoice == 2}" v-on:click="FloorScreedChoice = 2, FloorScreedCost = 700">
+									<label for="#" class="subpanel-block-title">Повышенная стяжка (до 100мм)</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+								<div class="subpanel-block" :class="{active_subtabs : FloorScreedChoice == 3}" v-on:click="FloorScreedChoice = 3, FloorScreedCost = 1050">
+									<label for="#" class="subpanel-block-title">Капитальная стяжка (до 150мм)</label>
+									<span class="difference-price"> {{ differencePrice }}</span> 
+								</div>
+							</div>
+						</div>
+						<div class="continue-button">
+							<h1>Продолжить</h1>
+						</div>
+						<a v-bind:href="link" class="homesite">Вернуться на сайт</a>
+					</div>
+				</div>
+				<div class="option__panels" v-if="tabnumber == 3">
+						<div class="option__panel">
+							<div class="draftmaterials__panel option">
+								<h2 class="draftmaterial-title option-title">Черновые материалы</h2>
+								<div class="draft-materials flex-grid">
+									<label for="#" class="draft-material flex-block" :class="{active_subtabs:DraftMaterialChoice == 0}" v-on:click="DraftMaterialChoice = 0">{{DraftMaterial[0].title}}</label>
+									<label for="#" class="draft-material flex-block" :class="{active_subtabs:DraftMaterialChoice == 1}" v-on:click="DraftMaterialChoice = 1">{{DraftMaterial[1].title}}</label>
+								</div>
+							</div>
+							<div class="SoundInsulation__panel option">
+								<h2 class="SoundInsulation-title option-title">Шумоизоляция пола</h2>
+								<div class="sound-insulations flex-grid">
+									<label for="#" class="sound-insulation flex-block" :class="{active_subtabs:SoundInsulationChoice == 0}" v-on:click="SoundInsulationChoice = 0">
+										<span>{{SoundInsulation[0].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{SoundInsulation[0].description}}</span>
+									</label>
+									<label for="#" class="sound-insulation flex-block" :class="{active_subtabs:SoundInsulationChoice == 1}" v-on:click="SoundInsulationChoice = 1">
+										<span>{{SoundInsulation[1].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{SoundInsulation[1].description}}</span>
+									</label>
+									<label for="#" class="sound-insulation flex-block" :class="{active_subtabs:SoundInsulationChoice == 2}" v-on:click="SoundInsulationChoice = 2">
+										<span>{{SoundInsulation[2].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{SoundInsulation[2].description}}</span>
+									</label>
+								</div>
+							</div>
+							<div class="Electrical__panel option">
+								<h2 class="Electrical-title option-title">Электрощит</h2>
+								<div class="Electricals flex-grid">
+									<label for="#" class="Electrical flex-block" :class="{active_subtabs:ElectricalChoice == 0}" v-on:click="ElectricalChoice = 0">
+										<span>{{Electrical[0].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Electrical[0].description}}</span>
+									</label>
+									<label for="#" class="Electrical flex-block" :class="{active_subtabs:ElectricalChoice == 1}" v-on:click="ElectricalChoice = 1">
+										<span>{{Electrical[1].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Electrical[1].description}}</span>
+									</label>
+									<label for="#" class="Electrical flex-block" :class="{active_subtabs:ElectricalChoice == 2}" v-on:click="ElectricalChoice = 2">
+										<span>{{Electrical[2].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Electrical[2].description}}</span>
+									</label>
+								</div>
+							</div>
+							<div class="Project__panel option">
+								<h2 class="Project-title option-title">Проект	</h2>
+								<div class="Projects flex-grid">
+									<label for="#" class="Project flex-block" :class="{active_subtabs:ProjectChoice == 0}" v-on:click="ProjectChoice = 0">
+										<span>{{Project[0].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Project[0].description}}</span>
+									</label>
+									<label for="#" class="Project flex-block" :class="{active_subtabs:ProjectChoice == 1}" v-on:click="ProjectChoice = 1">
+										<span>{{Project[1].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Project[1].description}}</span>
+									</label>
+									<label for="#" class="Project flex-block" :class="{active_subtabs:ProjectChoice == 2}" v-on:click="ProjectChoice = 2">
+										<span>{{Project[2].title}}</span>
+										<span class="subprice">+ 1000Р</span>
+										<span class="description">{{Project[2].description}}</span>
+									</label>
+								</div>
+							</div>
+						</div>
+				
+				<h2 class="option-info">{{OptionInfo}}</h2>
+				</div>
+				<div class="final_panel" v-if="tabnumber == 4">
+					<h2 class="final-title">{{FinalTitle}}</h2>
+					<form id="FinalForm" @submit="checkForm" action="#"  method="post" novalidate="true">
+						<div v-if="errors.length" class="errors">
+	   						<h3>Пожалуйста исправьте указанные ошибки:</h3>
+	   						<ul class="error-list">
+	      						<li v-for="error in errors">{{ error }}</li>
+	   						</ul>
+	   					</div>
+   							<input id="PersonName" v-model="PersonName" type="text" name="PersonName" placeholder="Ваше Имя">
+   							<input  id="PersonPhone" class="phonenumber"  v-model="PersonPhone"  type="phone"  name="PersonPhone" placeholder="">
+   							<input id="PersonEmail"  v-model="PersonEmail"  type="PersonEmail"  name="PersonEmail" placeholder="Ваш E-mail">
+    						<input type="submit" value="Отправить заявку"> 
+   					</form>
+   					<p class="privacy-policy">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c <a class="privacy-link" v-bind:href="PrivacyLink">политикой конфиденциальности</a></p>
+				</div>
+			</div>
+		</section>
+		
+		<footer class="footer__panel" >
+			<div class="container" v-if="tabnumber < 4">
+				<nav class="footer__tabs" v-if="tabnumber == 2">
+					<ul class="footer__tabs-list">
+						<li class="footer__tab-item" :class="{activeTabItem:  activeTab > 0 , activeTabItem:  activeTab == 1 }">
+							<a href="#" class="footer__tab-link" v-on:click="FirstRoom()">Комната</a>
+						</li>
+						<li class="footer__tab-item" :class="{hidden_room : roomcount < 2 , activeTabItem:  activeTab == 2 }"  >
+							<a href="#" class="footer__tab-link"  v-on:click="SecondRoom()">Комната 2</a>
+						</li>
+						<li class="footer__tab-item" :class="{hidden_room : roomcount < 3 , activeTabItem:  activeTab == 3 }"  >
+							<a href="#" class="footer__tab-link" v-on:click="ThirdRoom()">Комната 3</a>
+						</li>
+						<li class="footer__tab-item" :class="{hidden_room : roomcount < 4 , activeTabItem:  activeTab == 4 }" >
+							<a href="#" class="footer__tab-link"  v-on:click="FouthRoom()">Комната 4</a>
+						</li>
+						<li class="footer__tab-item" :class="{hidden_room : roomcount < 5 , activeTabItem:  activeTab == 5  }" >
+							<a href="#" class="footer__tab-link"  v-on:click="FifthRoom()">Комната 5</a>
+						</li>
+						<li class="footer__tab-item" :class="{activeTabItem:  activeTab == 6 }">
+							<a href="#" class="footer__tab-link" v-on:click="BathRoom()">Санузел</a>
+						</li>
+						<li class="footer__tab-item" :class="{activeTabItem:  activeTab == 7 }">
+							<a href="#" class="footer__tab-link" v-on:click="Kitchen()">Кухня</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="total-price footer-btn">
+					<h1 class="price">{{TotalPrice()}}</h1>
+				</div>
+				<div class="next-tab footer-btn">
+					<a href="#" class="continue" v-on:click="tabnumber++">{{textcontinue}}</a>
+				</div>
+			</div>
+			<div class="container">
+				<h2 class="final-price">Предварительная стоимость ремонта с учетом всех работ, материалов и доп.опций - {{ TotalPrice()}}</h2>
+			</div>
+		</footer>
+	</section>
+<script>
+var app = new Vue({
+  el: '#calculator',
+  data: {
+  	errors: [],
+    message: 'Здравствуй, Клиент!',
+    phone:'+7 (123) 456 78 90',
+   // telinfo:'Наш телефон',
+    tabnumber: 1,
+    IsActive:true,
+    activeTab:1,
+    PrivacyLink:'#',
+    link:'https://vk.com/im?sel=526174454',
+    roomcount: 2,
+    PersonName:'',
+    PersonPhone:'',
+    PersonEmail:'',
+    totalprice:1100000 ,
+    textcontinue: 'Продолжить',
+    roomTab: 1,
+    IsStudio: false,
+    doorcount: 3,
+    TrimHidden: true,
+    differencePrice:' +1000₽',
+    CeilingChoice: 1,
+    WallAligmentChoice: 1,
+    FloorScreedChoice : 1,
+    DraftMaterialChoice:0,
+    SoundInsulationChoice:0,
+    FinalTitle:'Оставьте заявку и мы перезвоним вам, чтобы ответить на ваши вопросы и договориться о встрече в нашем офисе.',
+    ElectricalChoice:0,
+    ProjectChoice:0,
+    SquareCount: 40,
+    heightcount: 2.4,
+    CeilingCost: 35,
+	WallAligmentCost : 200,
+	OptionInfo:'Отделка и утепление балкона, замена окон и радиаторов, шумоизоляция и другие опции расчитываются индивидуально после выезда на объект. ',
+    FloorScreedCost: 350,
+    DraftMaterial : [
+    {
+    	title: 'Черновые материалы Старатели / Перфекта',
+    	price: 550
+    },
+    {
+    	title: 'Черновые материалы Кнауф Ротбанд / Weber / Sheetrock',
+    	price: 650
+    }
+    	],
+    SoundInsulation : [
+    {
+    	title: 'Без шумоизоляции',
+    	price: 0,
+    	description:''
+    },
+    {
+    	title: 'Шуманет-100 Гидро',
+    	price: 1050,
+    	description:'5мм'
+    },
+    {
+    	title: 'Шуманет-100 Супер',
+    	price: 850,
+    	description:'4мм'
+    }	
+    	],
+    Electrical : [
+    {
+    	title: 'Базовый',
+    	price: 10000,
+    	description:'Электрощит АВВ Базовый'
+    },
+    {
+    	title: 'Базовый+',
+    	price: 15000,
+    	description:'Электрощит АВВ Базовый+'
+    },
+    {
+    	title: 'Максимальный',
+    	price: 18500,
+    	description:'Электрощит АВВ Максимальный'
+    }	
+    	],
+    Project : [
+    {
+    	title: 'Дизайн-проект "Базовый"',
+    	price: 20000,
+    	description:'Базовый проект, включающий все необходимое для реализации проекта'
+    },
+    {
+    	title: 'Дизайн-проект "Расширенный"',
+    	price: 45000,
+    	description:'Если требуется более детальная проработка и индивидуальные решения'
+    },
+    {
+    	title: 'Дизайн-проект "Максимальный"',
+    	price: 100000,
+    	description:'Подробный проект с подбором мебели, светильников и визуализацией'
+    }	
+    	]
+
+    
+    
+
+
+
+
+  },
+  computed: {
+  	
+ },
+  methods: {
+  	TrimOpen: function(){
+  		if(this.TrimHidden == true){
+  		this.TrimHidden = false;
+  		}else{
+  			this.TrimHidden = true;
+  		}
+  	},
+  	ParamPrice:function(){
+  		var price = this.doorcount * 500 + (Number(this.heightcount)*1000) + this.roomcount * 5000 + (Number(this.IsStudio)*5000) + this.CeilingCost*this.SquareCount + (this.WallAligmentCost * this.heightcount * this.SquareCount) + this.FloorScreedCost*this.SquareCount;
+  		return price;
+  	},
+  	OptionPrice: function(){
+  		var price = (this.DraftMaterial[this.DraftMaterialChoice].price * this.SquareCount) + this.SquareCount * this.SoundInsulation[this.SoundInsulationChoice].price + this.Electrical[this.ElectricalChoice].price + this.Project[this.ProjectChoice].price;
+  		return price;
+  	},
+  	TotalPrice:function(){
+  		var total = this.ParamPrice() + this.OptionPrice();
+  		return total;
+  	},
+  	checkForm: function (e) {
+      this.errors = [];
+
+      if (!this.PersonName) {
+        this.errors.push('Укажите имя.');
+      }
+      if (!this.PersonEmail) {
+        this.errors.push('Укажите электронную почту.');
+      } else if (!this.validEmail(this.PersonEmail)) {
+        this.errors.push('Укажите корректный адрес электронной почты.');
+      }
+
+      if (!this.errors.length) {
+        return true;
+      }
+
+      e.preventDefault();
+    },
+    validEmail:function(PersonEmail) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(PersonEmail);
+    }
+  },
+  mounted() {
+    if (localStorage.PersonName) {
+      this.PersonName = localStorage.PersonName;
+    }
+    if (localStorage.PersonPhone) {
+      this.PersonPhone = localStorage.PersonPhone;
+    }
+    if(localStorage.PersonEmail){
+    	this.PersonEmail = localStorage.PersonEmail
+    }
+    if(localStorage.SquareCount) {
+    	this.SquareCount = localStorage.SquareCount;
+    }
+    if(localStorage.heightcount) {
+    	this.heightcount = localStorage.heightcount;
+    }
+  },
+  watch: {
+    PersonName(newName) {
+      localStorage.PersonName = newName;
+    },
+    PersonPhone(newPhone) {
+    	localStorage.PersonPhone = newPhone;
+    },
+    PersonEmail(newEmail) {
+    	localStorage.PersonEmail = newEmail;
+    },
+    SquareCount(newSquare) {
+    	localStorage.SquareCount = newSquare;
+    },
+    heightcount(newHeight) {
+    	localStorage.heightcount = newHeight;
+    }
+  }
+ });
+
+</script>
+<script src="libs/button.js"></script>
+</body>
+</html>
