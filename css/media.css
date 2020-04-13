@@ -1,0 +1,284 @@
+@media screen and (max-width: 1140.01px){
+	.tabs{
+		width: 45%;
+	}
+	.tabs-list{
+		justify-content: space-around;
+	}
+	.phone{
+		font-size: 24px;
+		letter-spacing: 0;
+	}
+	.footer-btn{
+		flex-basis: 20%;
+	}
+	.price{
+		font-size: 24px;
+	}
+}
+@media screen and (max-width: 1000.01px){
+	#calculator{
+		height: 2250px;
+		padding: 0px 0 150px 0;
+	}
+	.basic-panel{
+		width: 75%;
+	}
+	#calculator.parametrs{
+		height: 900px;
+		padding: 0;
+	}
+	#height option{
+		font-size: 14px;
+		padding: 0;
+	}
+	.header__panel{
+		position: relative;
+	}
+	.phone{
+		font-size: 28px;
+    	line-height: 1.6;
+    	padding-bottom: 5px;
+	}
+	.header__panel>.container{
+		flex-direction: column;
+		align-items: center;
+	}
+	.active{
+		font-size: 24px;
+	}
+	.logo-place{
+		width: 40%;
+	}
+	.tabs{
+		width: 60%;
+		margin: 30px 0;
+	}
+	.tabs-list{
+		flex-direction: column;
+		align-items: center;
+	}
+	.tab-item{
+		padding: 20px 0;
+		font-size: 20px;
+	}
+	#calculator.parametrs .main__panels{
+		top:0;
+	}
+	.main__panels{
+		top:0;
+	}
+	.first-panel{
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		padding: 15px 0;
+	}
+	.square-info{
+		align-items: center;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.room-info{
+		height: auto;;
+		width: 100%;
+		align-items: center;	
+	}
+	.room-info span{
+		font-size: 18px;
+		margin: 0 0 15px 0;
+	}
+	.room-variant{
+		width: 100%;
+	}
+	.square-info span{
+		margin-bottom: 10px;
+		margin-top: 20px;
+		font-size: 18px;
+	}
+	#square{
+		margin-top: 0;
+		margin-left: 15px;
+		width: 30%;
+	}
+	.second-panel{
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		padding: 15px 0; 	
+
+	}
+	.door-info{
+		width: 100%;
+		align-items: center;
+		margin-bottom: 30px;
+	}
+	.door-variant{
+		width: 100%;
+	}
+	.door-info span{
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	.ceiling-info{
+		width:100%;
+		align-items: center;
+	}
+	.ceiling-info span{
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	.option__panel{
+		width: 100%;
+	}
+	.option__panels{
+		width: 75%;
+	}
+	#calculator.final{
+	 	height: 550px;
+	}
+	.square-value{
+		width: 100%;
+		display: flex;
+    	justify-content: center;
+    	align-items: center;
+	}
+	.final_panel{
+		margin-top: 30px;	
+	}
+}
+@media screen and (max-width: 800.01px){
+	.flex-grid{
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+	}
+	#calculator.parametrs.options{
+		height: 2000px;	
+	}
+	.draft-material.flex-block{
+		margin-bottom: 20px;	
+		width: 70%;
+	}
+	.sound-insulation.flex-block{
+		width: 70%;
+		margin-bottom: 20px;	
+	}
+	.Electrical.flex-block{
+		width: 70%;
+		margin-bottom: 20px;	
+	}
+	.Project.flex-block{
+		width: 70%;	
+		margin-bottom: 20px;	
+	}
+	.draftmaterials__panel.option{
+		margin-top: 30px;	
+	}
+	#calculator.parametrs.options .main__panels{
+		top:0;
+	}
+	#FinalForm input{
+		width: 50%;
+	}
+	#calculator.final{
+		height: 700px;
+	}
+}
+@media screen and (max-width: 600.01px){
+	.option-info{
+		font-size: 18px;
+	}
+	.final-title{
+		font-size: 20px;	
+		max-width: 100%;
+	}
+	.footer-btn{
+		flex-basis: 25%;
+	}
+	#calculator.final{
+		height: 850px;	
+	}
+	#calculator.parametrs.options{
+		height: 2100px;	
+	}
+	.option__panels{
+		width: 95%;	
+	}
+	#FinalForm{
+		width: 100%;
+	}
+	#FinalForm input{
+		width: 65%;
+	}
+	.privacy-policy{
+		max-width: 100%;
+	}
+	.final-price{
+		font-size: 18px;
+	}
+}
+@media screen and (max-width: 480.01px){
+	.door-variant{
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.door-variant label{
+		width: 30%;
+		margin-bottom: 15px;	
+	}
+	.room-variant{
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.room-variant label{
+		width: 20%;
+		margin-bottom: 15px;
+	}
+	.basic-panel{
+		width: 95%;	
+	}
+	#calculator.parametrs{
+		height: 1300px;
+	}
+	#calculator{
+		height: 2550px;
+	}
+	.subpanel-block-title{
+		padding-right: 15px;
+	}
+	.draft-material.flex-block{	
+		width: 85%;
+	}
+	.sound-insulation.flex-block{
+		width: 85%;	
+	}
+	.Electrical.flex-block{
+		width: 85%;	
+	}
+	.Project.flex-block{
+		width: 85%;		
+	}
+	#calculator.options{
+		height: 2100px;
+	}
+	#calculator.parametrs.final{
+		height: 800px;
+	}
+	.footer-btn{
+		flex-basis: 40%;
+	}
+	.container{
+		max-width: calc(100% - 10px);
+	}
+	.final-title{
+		font-size: 18px;
+	}
+	.privacy-policy{
+		font-size: 16px;
+	}
+	.final-price{
+		font-size: 16px;
+	}
+}

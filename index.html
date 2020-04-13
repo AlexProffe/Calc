@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="css/main.css">
-	<title>Calculator Build 0.01а</title>
+	<link rel="stylesheet" href="css/media.css">
+	<title>Calculator Build 0.55b</title>
 	<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>!-->
 	<script src="libs/vue.js"></script>
 </head>
@@ -15,7 +16,7 @@
 		</div>
 	</div>
 	<a class="back_to_top" title="Наверх">↑</a>
-	<section id="calculator" :class="{options: tabnumber == 3,parametrs : TrimHidden == true}">
+	<section id="calculator" :class="{options: tabnumber == 3,parametrs : TrimHidden == true,final: tabnumber == 4}">
 		<header class="header__panel">
 			<div class="container">
 				<div class="logo-place">
@@ -427,7 +428,7 @@ var app = new Vue({
   		return price;
   	},
   	TotalPrice:function(){
-  		var total = this.ParamPrice() + this.OptionPrice();
+  		var total = Math.round(this.ParamPrice() + this.OptionPrice());
   		return total;
   	},
   	checkForm: function (e) {
